@@ -355,6 +355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3679eea3d0b4f4c918833c87cc400951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  block: {fileID: 11400000, guid: 5f68ee604a5fb4b0b965051aac2ece90, type: 2}
+  wall: {fileID: 11400000, guid: f1a4f4c34879a45a98bc4e8be6148f7f, type: 2}
+  background: {fileID: 11400000, guid: d22d068f5871e4eacb05ecba5b1a2440, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
