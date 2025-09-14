@@ -29,13 +29,16 @@ public class GridController : MonoBehaviour
 
     public Vector3 GetWorldPos(int x, int y)
     {
-        return grid.CellToWorld(new Vector3Int(x, y, 0));
+        return grid.CellToWorld(new Vector3Int(x, y, 0)); // getting the pos
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // pushing block; block against wall / other block
+
+
+
     }
 
     public bool IsOccupied(int x, int y)
@@ -44,12 +47,12 @@ public class GridController : MonoBehaviour
         return tile != null && tile != block;
     }
 
-    public void PushBlock(Vector3Int start, Vector3Int destination)
+    public void PushBlock(Vector3Int start, Vector3Int destination) 
     {
         // set start position to the empty (background sprite)
         tilemap.SetTile(start, background);
         // set destination sprite to be the block
-        tilemap.SetTile(destination, block);
+        tilemap.SetTile(destination, block); 
     }
 }
 

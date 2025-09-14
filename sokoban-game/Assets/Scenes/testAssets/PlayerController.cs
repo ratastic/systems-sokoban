@@ -18,11 +18,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //int horizontal = (int) Input.GetAxisRaw("Horizontal");
+        //int vertical = (int) Input.GetAxisRaw("Vertical");
+
+        //Move(horizontal, vertical);
     }
 
     private void Move(int xMove, int yMove)
     {
+        //if (xMove != 0 && yMove != 0)
+        //{
+        //    yMove = 0;
+        //}
+
         x += xMove;
         y += yMove;
         transform.position = GridController.instance.GetWorldPos(x, y);
