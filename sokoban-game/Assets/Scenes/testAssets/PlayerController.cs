@@ -26,6 +26,5 @@ public class PlayerController : MonoBehaviour
         x += xMove;
         y += yMove;
         transform.position = GridController.instance.GetWorldPos(x, y);
-
     }
 }
