@@ -54,6 +54,11 @@ public class GridController : MonoBehaviour
         // set destination sprite to be the block
         tilemap.SetTile(destination, block); 
     }
+
+    public TileBase GetTileAt(Vector3Int position)
+    {
+        return tilemap.GetTile(position);
+    }
 }
 
 //public class Junk
