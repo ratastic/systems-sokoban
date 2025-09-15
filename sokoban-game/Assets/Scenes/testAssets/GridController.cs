@@ -12,6 +12,7 @@ public class GridController : MonoBehaviour
     public static GridController instance;
     private Grid grid;
     private Tilemap tilemap;
+    private Tilemap wallTilemap;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -25,6 +26,7 @@ public class GridController : MonoBehaviour
         instance = this; // set ourselves to singleton instance
         grid = GetComponent<Grid>();
         tilemap = transform.Find("blocks").GetComponent<Tilemap>();
+        wallTilemap = transform.Find("walls").GetComponent<Tilemap>();
     }
 
     public Vector3 GetWorldPos(int x, int y)
@@ -36,18 +38,16 @@ public class GridController : MonoBehaviour
     void Update()
     {
         // pushing block; block against wall / other block
-
-
-
     }
 
     public bool IsOccupied(int x, int y)
     {
         var tile = tilemap.GetTile(new Vector3Int(x, y, 0));
-        return tile != null && tile != block;
+        var tile2 = wallTilemap.GetTile(new Vector3Int(x, y, 0));
+        return tile == block || tile2 == wall;
     }
 
-    public void PushBlock(Vector3Int start, Vector3Int destination) 
+    public void PushBlock(Vector3Int start, Vector3Int destination) // deleting and respawning— not actually moving
     {
         // set start position to the empty (background sprite)
         tilemap.SetTile(start, background);

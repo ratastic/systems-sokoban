@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // player movement
         if (Input.GetKeyDown("w"))
         {
             Move(0, 1);
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
         {
             Move(1, 0);
         }
+
+        Debug.Log("x:" + x + "y:" + y);
+        TileBase tileToGet = GridController.instance.GetTileAt(new Vector3Int(-4, -1, 0));
+        Debug.Log("tile:" + (tileToGet == null));
     }
 
     private void Move(int xMove, int yMove)
@@ -49,14 +54,14 @@ public class PlayerController : MonoBehaviour
 
         if (targetTile == GridController.instance.block) // if the target tile has a block
         {
-            int byBlockX = targetX + xMove;
-            int byBlockY = targetY + yMove;
-            Vector3Int byBlockPos = new Vector3Int(byBlockX, byBlockY, 0);
+            int blockX = targetX + xMove;
+            int blockY = targetY + yMove;
+            Vector3Int blockPos = new Vector3Int(blockX, blockY, 0);
 
-            if (!GridController.instance.IsOccupied(byBlockX, byBlockY))
+            if (!GridController.instance.IsOccupied(blockX, blockY))
             {
                 // block can be pushed
-                GridController.instance.PushBlock(targetPos, byBlockPos);
+                GridController.instance.PushBlock(targetPos, blockPos);
 
                 // moves player into vacancy left by pushed block
                 x = targetX;
