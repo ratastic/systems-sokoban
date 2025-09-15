@@ -52,7 +52,7 @@ public class GridController : MonoBehaviour
         // set start position to the empty (background sprite)
         tilemap.SetTile(start, background);
         // set destination sprite to be the block
-        tilemap.SetTile(destination, block); 
+        tilemap.SetTile(destination, block);
     }
 
     public TileBase GetTileAt(Vector3Int position)
