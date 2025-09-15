@@ -46,21 +46,26 @@ public class PlayerController : MonoBehaviour
 
     private void Move(int xMove, int yMove)
     {
+        // target spot is the x position plus move amount
         int targetX = x + xMove;
         int targetY = y + yMove;
 
+        // access the target spot
         Vector3Int targetPos = new Vector3Int(targetX, targetY, 0); // gets new position
         TileBase targetTile = GridController.instance.GetTileAt(targetPos); // gets the tile at that new position
 
-        if (targetTile == GridController.instance.block) // if the target tile has a block
+        if (targetTile == GridController.instance.block) // handles the case when the target tile has a block
         {
-            int blockX = targetX + xMove;
+            // defines that block position
+            int blockX = targetX + xMove; 
             int blockY = targetY + yMove;
+            // gets the new block position
             Vector3Int blockPos = new Vector3Int(blockX, blockY, 0);
 
+            // if nothing is in front of the block
             if (!GridController.instance.IsOccupied(blockX, blockY))
             {
-                // block can be pushed
+                // pushes the block from the player's target pos to the block's target position
                 GridController.instance.PushBlock(targetPos, blockPos);
 
                 // moves player into vacancy left by pushed block
@@ -73,15 +78,14 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        // if nothing is in front of the player
         else if (!GridController.instance.IsOccupied(targetX, targetY))
         {
+            // move player to next tile
             x = targetX;
             y = targetY;
         }
-        else
-        {
-            return;
-        }
+
         transform.position = GridController.instance.GetWorldPos(x, y);
     }
 }
