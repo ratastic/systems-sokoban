@@ -13,7 +13,6 @@ public class GridController : MonoBehaviour
     private Tilemap tilemap;
     private Tilemap wallTilemap;
     public List<int[]> tileMapHistory; // need to remove block from where it was and put it where it needs to be
-    //public Dictionary<Tile, Vector3Int> goals;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -30,9 +29,6 @@ public class GridController : MonoBehaviour
         wallTilemap = transform.Find("walls").GetComponent<Tilemap>();
 
         tileMapHistory = new List<int[]>();
-
-        // goals = new Dictionary<Tile, Vector3Int>();
-        // goals.Add(block, new Vector3Int(5, 5, 0));
     }
 
     public Vector3 GetWorldPos(int x, int y)
@@ -66,12 +62,3 @@ public class GridController : MonoBehaviour
         return tilemap.GetTile(position);
     }
 }
-
-//public class Junk
-//{
-//    public void DoStuff()
-//    {
-//        GridController.instance.DoSomething();
-//    }
-
-//}
