@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 38208853}
   - component: {fileID: 38208852}
   m_Layer: 0
-  m_Name: blocks
+  m_Name: block01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1109,6 +1109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b026a405592c49f5aa61c317da9ab8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHistory: []
+  blockHistory: 
 --- !u!61 &1157876259
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1992,6 +1994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b026a405592c49f5aa61c317da9ab8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHistory: []
+  blockHistory: 
 --- !u!483693784 &1682112655
 TilemapRenderer:
   m_ObjectHideFlags: 0

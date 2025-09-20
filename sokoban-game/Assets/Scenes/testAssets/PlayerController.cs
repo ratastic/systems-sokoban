@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     private int x = 0;
     private int y = 0;
+    public List<Vector3Int> playerHistory = new List<Vector3Int>();
+    public List<bool> blockHistory = new List<bool>(); // checks whether or not block is being moved hence bool
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,9 +42,42 @@ public class PlayerController : MonoBehaviour
             Move(1, 0);
         }
 
+        // undo
+        if (Input.GetKeyDown("z"))
+        {
+            if (playerHistory.Count > 0) 
+            {
+                Debug.Log("im being pressed");
+                UndoPlayerMove();
+
+                if (blockHistory[blockHistory.Count - 1])
+                {
+                    UndoBlockMove();
+                }
+                blockHistory.RemoveAt(blockHistory.Count - 1);
+            }
+        }
+
         Debug.Log("x:" + x + "y:" + y);
         TileBase tileToGet = GridController.instance.GetTileAt(new Vector3Int(-4, -1, 0));
         Debug.Log("tile:" + (tileToGet == null));
+    }
+
+    private void UndoPlayerMove()
+    {
+        Debug.Log("player move undone");
+        Vector3Int playerPos = playerHistory[playerHistory.Count - 1]; 
+        playerHistory.RemoveAt(playerHistory.Count - 1); 
+        transform.position = GridController.instance.GetWorldPos(playerPos.x, playerPos.y);
+    }
+
+    private void UndoBlockMove()
+    {
+        Debug.Log("block move undone");
+        int[] blockMoveInfo = GridController.instance.tileMapHistory[GridController.instance.tileMapHistory.Count - 1];
+        GridController.instance.tileMapHistory.RemoveAt(GridController.instance.tileMapHistory.Count - 1);
+        // grabbing block x y and target x y
+        GridController.instance.PushBlock(new Vector3Int(blockMoveInfo[0], blockMoveInfo[1], 0), new Vector3Int(blockMoveInfo[2], blockMoveInfo[3], 0));
     }
 
     private void Move(int xMove, int yMove)
@@ -57,7 +93,7 @@ public class PlayerController : MonoBehaviour
         if (targetTile == GridController.instance.block) // handles the case when the target tile has a block
         {
             // defines that block position
-            int blockX = targetX + xMove; 
+            int blockX = targetX + xMove;
             int blockY = targetY + yMove;
             // gets the new block position
             Vector3Int blockPos = new Vector3Int(blockX, blockY, 0);
@@ -65,6 +101,12 @@ public class PlayerController : MonoBehaviour
             // if nothing is in front of the block
             if (!GridController.instance.IsOccupied(blockX, blockY))
             {
+                blockHistory.Add(true); // player moves and a block
+                playerHistory.Add(new Vector3Int(x, y, 0)); // adds player pos
+
+                // stores before and after position for later
+                GridController.instance.tileMapHistory.Add(new int[4] { blockX, blockY, targetX, targetY });
+
                 // pushes the block from the player's target pos to the block's target position
                 GridController.instance.PushBlock(targetPos, blockPos);
 
@@ -81,6 +123,9 @@ public class PlayerController : MonoBehaviour
         // if nothing is in front of the player
         else if (!GridController.instance.IsOccupied(targetX, targetY))
         {
+            blockHistory.Add(false); // player moves but not a block
+            playerHistory.Add(new Vector3Int(x, y, 0)); 
+
             // move player to next tile
             x = targetX;
             y = targetY;
