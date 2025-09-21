@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         // undo
         if (Input.GetKeyDown("z"))
         {
-            if (playerHistory.Count > 0) 
+            if (playerHistory.Count > 0)
             {
                 Debug.Log("im being pressed");
                 UndoPlayerMove();
@@ -58,17 +58,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Debug.Log("x:" + x + "y:" + y);
+        if (Input.GetKeyDown("r"))
+        {
+            RestartLevel();
+        }
+
+        //Debug.Log("x:" + x + "y:" + y);
         TileBase tileToGet = GridController.instance.GetTileAt(new Vector3Int(-4, -1, 0));
-        Debug.Log("tile:" + (tileToGet == null));
+        //Debug.Log("tile:" + (tileToGet == null));
     }
 
     private void UndoPlayerMove()
     {
         Debug.Log("player move undone");
-        Vector3Int playerPos = playerHistory[playerHistory.Count - 1]; 
-        playerHistory.RemoveAt(playerHistory.Count - 1); 
+        Vector3Int playerPos = playerHistory[playerHistory.Count - 1];
+        playerHistory.RemoveAt(playerHistory.Count - 1);
         transform.position = GridController.instance.GetWorldPos(playerPos.x, playerPos.y);
+
+        x = playerPos.x;
+        y = playerPos.y;
     }
 
     private void UndoBlockMove()
@@ -80,6 +88,26 @@ public class PlayerController : MonoBehaviour
         GridController.instance.PushBlock(new Vector3Int(blockMoveInfo[0], blockMoveInfo[1], 0), new Vector3Int(blockMoveInfo[2], blockMoveInfo[3], 0));
     }
 
+    private bool CheckWin()
+    {
+        foreach (Vector3Int goal in GridController.instance.goalPos)
+        {
+            Tile goalTile = GridController.instance.GetGoalAt(goal) as Tile;
+            Tile blockTile = GridController.instance.GetTileAt(goal) as Tile;
+
+            if (blockTile == null || blockTile != GridController.instance.goalToBlock.GetValueOrDefault(goalTile, null))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void RestartLevel()
+    {
+
+    }
+
     private void Move(int xMove, int yMove)
     {
         // target spot is the x position plus move amount
@@ -88,9 +116,9 @@ public class PlayerController : MonoBehaviour
 
         // access the target spot
         Vector3Int targetPos = new Vector3Int(targetX, targetY, 0); // gets new position
-        TileBase targetTile = GridController.instance.GetTileAt(targetPos); // gets the tile at that new position
+        Tile targetTile = GridController.instance.GetTileAt(targetPos) as Tile; // gets the tile at that new position
 
-        if (targetTile == GridController.instance.block) // handles the case when the target tile has a block
+        if (GridController.instance.blockTypes.Contains(targetTile)) // handles the case when the target tile has a block
         {
             // defines that block position
             int blockX = targetX + xMove;
@@ -124,7 +152,7 @@ public class PlayerController : MonoBehaviour
         else if (!GridController.instance.IsOccupied(targetX, targetY))
         {
             blockHistory.Add(false); // player moves but not a block
-            playerHistory.Add(new Vector3Int(x, y, 0)); 
+            playerHistory.Add(new Vector3Int(x, y, 0));
 
             // move player to next tile
             x = targetX;
@@ -132,6 +160,11 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = GridController.instance.GetWorldPos(x, y);
+
+        if (CheckWin())
+        {
+            Debug.Log("benjamin so awesome");
+        }
     }
 }
 
