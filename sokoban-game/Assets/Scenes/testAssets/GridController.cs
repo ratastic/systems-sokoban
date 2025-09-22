@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class GridController : MonoBehaviour
 {
+    // reset variables 
     public Tile block; // block 1
     public Tile skyBlue; // block 2
     public Tile tealBlue; // block 3
@@ -26,7 +27,7 @@ public class GridController : MonoBehaviour
     public Vector3Int blockStart = new Vector3Int();
     public Vector3Int skyBlueStart = new Vector3Int();
     public Vector3Int tealBlueStart = new Vector3Int();
-    public Dictionary<Tile, Vector3Int> tileStartPos;
+    //public Dictionary<Tile, Vector3Int> tileStartPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -86,7 +87,7 @@ public class GridController : MonoBehaviour
 
     public void PushBlock(Vector3Int start, Vector3Int destination) // deleting and respawning— not actually moving
     {
-        Tile targetTile = GetTileAt(start) as Tile; 
+        Tile targetTile = GetTileAt(start) as Tile;
         // set start position to the empty (background sprite)
         tilemap.SetTile(start, null);
         // set destination sprite to be the block
@@ -95,11 +96,16 @@ public class GridController : MonoBehaviour
 
     public TileBase GetTileAt(Vector3Int position)
     {
-        return tilemap.GetTile(position); 
+        return tilemap.GetTile(position);
     }
 
     public TileBase GetGoalAt(Vector3Int position)
     {
-        return goalTilemap.GetTile(position); 
+        return goalTilemap.GetTile(position);
+    }
+
+    public void Reset()
+    {
+        
     }
 }
