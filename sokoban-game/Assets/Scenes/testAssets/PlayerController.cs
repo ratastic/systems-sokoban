@@ -105,10 +105,15 @@ public class PlayerController : MonoBehaviour
 
     private void RestartLevel()
     {
+        // reset player
         x = 0;
         y = 0;
         Move(0, 0);
         playerHistory.Clear();
+
+        // reset blocks
+        blockHistory.Clear();
+        GridController.instance.tileMapHistory.Clear();
     }
 
     private void Move(int xMove, int yMove)

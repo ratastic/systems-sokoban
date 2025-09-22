@@ -23,6 +23,7 @@ public class GridController : MonoBehaviour
     public HashSet<Tile> blockTypes;
     public List<Vector3Int> goalPos = new List<Vector3Int>();
     public Dictionary<Tile, Tile> goalToBlock;
+    //public Dictionary<Tile, List<Vector3Int>> blockStartPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -52,9 +53,35 @@ public class GridController : MonoBehaviour
         {
             {blockGoal, block}, // receive corresponding block tile type
             {skyGoal, skyBlue},
-            {tealGoal, tealBlue} 
+            {tealGoal, tealBlue}
         };
+
+        // blockStartPos = new Dictionary<Tile, List<Vector3Int>>
+        // {
+        //     {block, GetBlockStartPos(block)},
+        //     {skyBlue, GetBlockStartPos(skyBlue)},
+        //     {tealBlue, GetBlockStartPos(tealBlue)}
+        // };
     }
+
+    // public List<Vector3Int> GetBlockStartPos(Tile tile)
+    // {
+    //     List<Vector3Int> positions = new List<Vector3Int>();
+
+    //     if (tile == block)
+    //     {
+    //         positions.Add(new Vector3Int(-3, 0, 0));
+    //     }
+    //     else if (tile == skyBlue)
+    //     {
+    //         positions.Add(new Vector3Int(3, 2, 0));
+    //     }
+    //     else if (tile == tealBlue)
+    //     {
+    //         positions.Add(new Vector3Int(4, 2, 0));
+    //     }
+    //     return positions;
+    // }
 
     public Vector3 GetWorldPos(int x, int y)
     {
