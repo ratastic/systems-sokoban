@@ -105,7 +105,10 @@ public class PlayerController : MonoBehaviour
 
     private void RestartLevel()
     {
-
+        x = 0;
+        y = 0;
+        Move(0, 0);
+        playerHistory.Clear();
     }
 
     private void Move(int xMove, int yMove)
@@ -163,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
         if (CheckWin())
         {
-            Debug.Log("benjamin so awesome");
+            Debug.Log("YOU WON");
         }
     }
 }

@@ -6,9 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class GridController : MonoBehaviour
 {
-    public Tile block; // this is being used to redraw block (dark blue)
-    public Tile skyBlue;
-    public Tile tealBlue;
+    public Tile block; // block 1
+    public Tile skyBlue; // block 2
+    public Tile tealBlue; // block 3
     public Tile blockGoal;
     public Tile skyGoal;
     public Tile tealGoal;
@@ -41,16 +41,18 @@ public class GridController : MonoBehaviour
 
         tileMapHistory = new List<int[]>();
 
-        blockTypes = new HashSet<Tile>();
-        blockTypes.Add(block);
-        blockTypes.Add(skyBlue);
-        blockTypes.Add(tealBlue);
+        blockTypes = new HashSet<Tile>
+        {
+            block,
+            skyBlue,
+            tealBlue // adding
+        };
 
         goalToBlock = new Dictionary<Tile, Tile>
         {
-            {blockGoal, block},
+            {blockGoal, block}, // receive corresponding block tile type
             {skyGoal, skyBlue},
-            {tealGoal, tealBlue}
+            {tealGoal, tealBlue} 
         };
     }
 
@@ -74,7 +76,7 @@ public class GridController : MonoBehaviour
 
     public void PushBlock(Vector3Int start, Vector3Int destination) // deleting and respawning— not actually moving
     {
-        Tile targetTile = GetTileAt(start) as Tile;
+        Tile targetTile = GetTileAt(start) as Tile; 
         // set start position to the empty (background sprite)
         tilemap.SetTile(start, null);
         // set destination sprite to be the block
@@ -83,11 +85,11 @@ public class GridController : MonoBehaviour
 
     public TileBase GetTileAt(Vector3Int position)
     {
-        return tilemap.GetTile(position);
+        return tilemap.GetTile(position); 
     }
 
     public TileBase GetGoalAt(Vector3Int position)
     {
-        return goalTilemap.GetTile(position);
+        return goalTilemap.GetTile(position); 
     }
 }
