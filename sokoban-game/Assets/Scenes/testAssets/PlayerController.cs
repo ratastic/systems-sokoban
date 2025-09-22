@@ -112,6 +112,10 @@ public class PlayerController : MonoBehaviour
         playerHistory.Clear();
 
         // reset blocks
+        GridController.instance.tilemap.ClearAllTiles();
+        GridController.instance.tilemap.SetTile(GridController.instance.blockStart, GridController.instance.block);
+        GridController.instance.tilemap.SetTile(GridController.instance.skyBlueStart, GridController.instance.skyBlue);
+        GridController.instance.tilemap.SetTile(GridController.instance.tealBlueStart, GridController.instance.tealBlue);
         blockHistory.Clear();
         GridController.instance.tileMapHistory.Clear();
     }

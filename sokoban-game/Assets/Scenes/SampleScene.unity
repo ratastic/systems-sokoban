@@ -1160,10 +1160,14 @@ MonoBehaviour:
   tealGoal: {fileID: 11400000, guid: c17e4bb1eee9a4e5996b58588f456e3e, type: 2}
   wall: {fileID: 11400000, guid: f1a4f4c34879a45a98bc4e8be6148f7f, type: 2}
   background: {fileID: 11400000, guid: d22d068f5871e4eacb05ecba5b1a2440, type: 2}
+  tilemap: {fileID: 0}
   goalPos:
   - {x: -7, y: 0, z: 0}
   - {x: -7, y: -3, z: 0}
   - {x: 2, y: 3, z: 0}
+  blockStart: {x: -3, y: 0, z: 0}
+  skyBlueStart: {x: 3, y: 2, z: 0}
+  tealBlueStart: {x: 4, y: 2, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

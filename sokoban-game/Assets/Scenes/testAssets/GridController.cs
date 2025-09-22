@@ -16,14 +16,17 @@ public class GridController : MonoBehaviour
     public Tile background;
     public static GridController instance;
     private Grid grid;
-    private Tilemap tilemap;
+    public Tilemap tilemap;
     private Tilemap goalTilemap;
     private Tilemap wallTilemap;
     public List<int[]> tileMapHistory; // need to remove block from where it was and put it where it needs to be
     public HashSet<Tile> blockTypes;
     public List<Vector3Int> goalPos = new List<Vector3Int>();
     public Dictionary<Tile, Tile> goalToBlock;
-    //public Dictionary<Tile, List<Vector3Int>> blockStartPos;
+    public Vector3Int blockStart = new Vector3Int();
+    public Vector3Int skyBlueStart = new Vector3Int();
+    public Vector3Int tealBlueStart = new Vector3Int();
+    public Dictionary<Tile, Vector3Int> tileStartPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -56,33 +59,13 @@ public class GridController : MonoBehaviour
             {tealGoal, tealBlue}
         };
 
-        // blockStartPos = new Dictionary<Tile, List<Vector3Int>>
+        // tileStartPos = new Dictionary<Tile, Vector3Int>
         // {
-        //     {block, GetBlockStartPos(block)},
-        //     {skyBlue, GetBlockStartPos(skyBlue)},
-        //     {tealBlue, GetBlockStartPos(tealBlue)}
+        //     {block, blockStart},
+        //     {skyBlue,skyBlueStart},
+        //     {tealBlue, tealBlueStart}
         // };
     }
-
-    // public List<Vector3Int> GetBlockStartPos(Tile tile)
-    // {
-    //     List<Vector3Int> positions = new List<Vector3Int>();
-
-    //     if (tile == block)
-    //     {
-    //         positions.Add(new Vector3Int(-3, 0, 0));
-    //     }
-    //     else if (tile == skyBlue)
-    //     {
-    //         positions.Add(new Vector3Int(3, 2, 0));
-    //     }
-    //     else if (tile == tealBlue)
-    //     {
-    //         positions.Add(new Vector3Int(4, 2, 0));
-    //     }
-    //     return positions;
-    // }
-
     public Vector3 GetWorldPos(int x, int y)
     {
         return grid.CellToWorld(new Vector3Int(x, y, 0)); // getting the pos
