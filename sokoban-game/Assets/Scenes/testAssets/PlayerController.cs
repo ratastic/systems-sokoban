@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         GridController.instance.PushBlock(new Vector3Int(blockMoveInfo[0], blockMoveInfo[1], 0), new Vector3Int(blockMoveInfo[2], blockMoveInfo[3], 0));
     }
 
-    private bool CheckWin()
+    public bool CheckWin()
     {
         foreach (Vector3Int goal in GridController.instance.goalPos)
         {
