@@ -171,6 +171,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: smileyPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 8371363649550291195, guid: 5c7f9231d74e34941ba77910c55f839d, type: 3}
+      propertyPath: 'playerSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b63221e0b8704754a499eba4613ad7e, type: 3}
+    - target: {fileID: 8371363649550291195, guid: 5c7f9231d74e34941ba77910c55f839d, type: 3}
+      propertyPath: 'playerSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 0445f4dbab53247e197825e51b1309b1, type: 3}
+    - target: {fileID: 8371363649550291195, guid: 5c7f9231d74e34941ba77910c55f839d, type: 3}
+      propertyPath: 'playerSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 4705698347c894ac8b1f007e9e634e33, type: 3}
+    - target: {fileID: 8371363649550291195, guid: 5c7f9231d74e34941ba77910c55f839d, type: 3}
+      propertyPath: 'playerSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 18f454fc176a74f218ab02ca321a42fd, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

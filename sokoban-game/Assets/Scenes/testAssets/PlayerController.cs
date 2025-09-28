@@ -9,10 +9,14 @@ public class PlayerController : MonoBehaviour
     private int y = 0;
     public List<Vector3Int> playerHistory = new List<Vector3Int>();
     public List<bool> blockHistory = new List<bool>(); // checks whether or not block is being moved hence bool
+    private SpriteRenderer currentSprite;
+    public Sprite[] playerSprites = new Sprite[4];
+    public List<Sprite> spriteHistory = new List<Sprite>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentSprite = GetComponent<SpriteRenderer>();
         x = 0;
         y = 0;
         Move(0, 0);
@@ -25,21 +29,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown("w"))
         {
             Move(0, 1);
+            currentSprite.sprite = playerSprites[0];
         }
 
         if (Input.GetKeyDown("a"))
         {
             Move(-1, 0);
+            currentSprite.sprite = playerSprites[1];
         }
 
         if (Input.GetKeyDown("s"))
         {
             Move(0, -1);
+            currentSprite.sprite = playerSprites[2];
         }
 
         if (Input.GetKeyDown("d"))
         {
             Move(1, 0);
+            currentSprite.sprite = playerSprites[3];
         }
 
         // undo
@@ -73,6 +81,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("player move undone");
         Vector3Int playerPos = playerHistory[playerHistory.Count - 1];
         playerHistory.RemoveAt(playerHistory.Count - 1);
+
+        Sprite lastSprite = spriteHistory[spriteHistory.Count - 1];
+        spriteHistory.RemoveAt(spriteHistory.Count - 1);
+        currentSprite.sprite = lastSprite;
+
         transform.position = GridController.instance.GetWorldPos(playerPos.x, playerPos.y);
 
         x = playerPos.x;
@@ -109,6 +122,7 @@ public class PlayerController : MonoBehaviour
         x = 0;
         y = 0;
         Move(0, 0);
+        currentSprite.sprite = playerSprites[0];
         playerHistory.Clear();
 
         // reset blocks
@@ -143,6 +157,7 @@ public class PlayerController : MonoBehaviour
             {
                 blockHistory.Add(true); // player moves and a block
                 playerHistory.Add(new Vector3Int(x, y, 0)); // adds player pos
+                spriteHistory.Add(currentSprite.sprite);
 
                 // stores before and after position for later
                 GridController.instance.tileMapHistory.Add(new int[4] { blockX, blockY, targetX, targetY });
@@ -165,6 +180,7 @@ public class PlayerController : MonoBehaviour
         {
             blockHistory.Add(false); // player moves but not a block
             playerHistory.Add(new Vector3Int(x, y, 0));
+            spriteHistory.Add(currentSprite.sprite);
 
             // move player to next tile
             x = targetX;

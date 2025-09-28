@@ -13,8 +13,8 @@ public class GridController : MonoBehaviour
     public Tile blockGoal;
     public Tile skyGoal;
     public Tile tealGoal;
-    public Tile wall;
-    public Tile background;
+    //public Tile wall;
+    //public Tile background;
     public static GridController instance;
     private Grid grid;
     public Tilemap tilemap;
