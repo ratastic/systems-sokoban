@@ -28,4 +28,14 @@ public class LoadNextLevel : MonoBehaviour
     {
         SceneManager.LoadScene("Level02");
     }
+
+    public void LoadLevel3()
+    {
+        SceneManager.LoadScene("Level03");
+    }
+
+    public void LoadLevel4()
+    {
+        SceneManager.LoadScene("Level04");
+    }
 }
