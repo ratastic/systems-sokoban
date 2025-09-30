@@ -150,8 +150,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 993687122}
   - {fileID: 326582158}
+  - {fileID: 993687122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1660,7 +1660,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 1c0018169520d4b42b177aabaefe7ce3, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 40ed7d50b43f9477bb4868cb40473c40, type: 2}
+    m_Data: {fileID: 11400000, guid: 41423edd5669d499593ef6dcbde578cd, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -1669,7 +1669,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -3129231894483966270, guid: 3cbd2bd230be842d49460be072e98a65, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -723564761091120177, guid: 3cbd2bd230be842d49460be072e98a65, type: 3}
+    m_Data: {fileID: -7074726159108421239, guid: 6b65e2a739ce14ddc89a32632ad2f628, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 3
     m_Data:
@@ -2220,9 +2220,9 @@ MonoBehaviour:
   block: {fileID: 11400000, guid: d446a5a6e67644adea80207d9471d461, type: 2}
   skyBlue: {fileID: 11400000, guid: 48d1f6772093c4f2d96e50ca58221e2e, type: 2}
   tealBlue: {fileID: 11400000, guid: ef9f518e8386a4edd9f0c99f5ddc2065, type: 2}
-  blockGoal: {fileID: 11400000, guid: 588abbdce7f6648c09707d5873414fa8, type: 2}
-  skyGoal: {fileID: 11400000, guid: 5df88590a00d2464cb7b59f2a8832687, type: 2}
-  tealGoal: {fileID: 11400000, guid: c17e4bb1eee9a4e5996b58588f456e3e, type: 2}
+  blockGoal: {fileID: 11400000, guid: 41423edd5669d499593ef6dcbde578cd, type: 2}
+  skyGoal: {fileID: 11400000, guid: 1c0018169520d4b42b177aabaefe7ce3, type: 2}
+  tealGoal: {fileID: 11400000, guid: c0af3deed6814471db54976da5ab775d, type: 2}
   tilemap: {fileID: 0}
   goalPos:
   - {x: 6, y: -4, z: 0}
