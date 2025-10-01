@@ -29,6 +29,8 @@ public class GridController : MonoBehaviour
     public Vector3Int tealBlueStart = new Vector3Int();
     //public Dictionary<Tile, Vector3Int> tileStartPos;
 
+    public AudioSource rollSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -92,6 +94,8 @@ public class GridController : MonoBehaviour
         tilemap.SetTile(start, null);
         // set destination sprite to be the block
         tilemap.SetTile(destination, targetTile);
+
+        rollSound.Play();
     }
 
     public TileBase GetTileAt(Vector3Int position)

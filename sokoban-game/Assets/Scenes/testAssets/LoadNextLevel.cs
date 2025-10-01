@@ -4,11 +4,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEditor.Toolbars;
 
 public class LoadNextLevel : MonoBehaviour
 {
     public PlayerController playerController;
     public GameObject enterLevel2;
+    public AudioSource bellDing;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +22,14 @@ public class LoadNextLevel : MonoBehaviour
     {
         if (playerController.CheckWin())
         {
-            enterLevel2.SetActive(true);
+            WinUpdate();
         }
+    }
+
+    public void WinUpdate()
+    {
+        enterLevel2.SetActive(true);
+        bellDing.Play();
     }
 
     public void LoadLevel2()
@@ -37,5 +45,10 @@ public class LoadNextLevel : MonoBehaviour
     public void LoadLevel4()
     {
         SceneManager.LoadScene("Level04");
+    }
+
+    public void LoadHomePage()
+    {
+        SceneManager.LoadScene("HomePage");
     }
 }

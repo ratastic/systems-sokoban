@@ -26,25 +26,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // player movement
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow))
         {
             Move(0, 1);
             currentSprite.sprite = playerSprites[0];
         }
 
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("a") || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Move(-1, 0);
             currentSprite.sprite = playerSprites[1];
         }
 
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("s") || Input.GetKeyDown(KeyCode.DownArrow))
         {
             Move(0, -1);
             currentSprite.sprite = playerSprites[2];
         }
 
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKeyDown("d") || Input.GetKeyDown(KeyCode.RightArrow))
         {
             Move(1, 0);
             currentSprite.sprite = playerSprites[3];
